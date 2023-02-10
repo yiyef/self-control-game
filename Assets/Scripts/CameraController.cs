@@ -19,12 +19,14 @@ public class CameraController : MonoBehaviour
         target = PlayerController.instance.transform;
 
         halfHeight = Camera.main.orthographicSize;
-        halfWidth = halfWidth * Camera.main.aspect;
+        halfWidth = halfHeight * Camera.main.aspect;
         Debug.Log("halfHeight"+halfHeight);
 
         bottomLeftLimit = theMap.localBounds.min + new Vector3(halfWidth,halfHeight,0f);
         Debug.Log("bottomLeftLimit"+bottomLeftLimit);
-        topRightLimit = theMap.localBounds.max + new Vector3(-halfWidth,-halfHeight, 0f); ;
+        topRightLimit = theMap.localBounds.max + new Vector3(-halfWidth,-halfHeight, 0f);
+
+        PlayerController.instance.SetBounds(theMap.localBounds.min, theMap.localBounds.max);
     }
 
     // LateUpdate is called once per frame after update
